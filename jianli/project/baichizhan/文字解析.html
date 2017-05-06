@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/xxx.css">
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="abcd">
+	<textarea id="text" style="line-height:30px;font-size:20px;font-family:'Comic Sans MS';">粘贴文章在这里
+然后点击开始制作 之后选择需要挖空的单词 点击完成制作后把代码复制到 做题器</textarea>
+	<div id="noshowtext">
+			<p id="content">
+				
+
+			</p>
+		</div>
+		<div>
+		<!--显示设置-->
+		<div id="gaol" style="display: inline-block;">
+			是否开启高亮
+			<div id="Slideswitch"><!--按钮-->
+				<div id="INSlideswitch" style="left:1px" ></div>
+			</div>
+		</div>
+		<div id="annotations" style="display: inline-block;">
+		答案解析:
+			<textarea id="textarea2"></textarea>
+		</div>
+		</div>
+		<div id="production">
+			完成制作
+		</div>
+
+		<div id="button">
+			开始制作
+		</div>
+
+		<div id="textarea3" style="display:none;">
+			把文本内容复制到做题器里
+			<textarea id="textarea4"></textarea>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript">
+	var highlight=false;
+	var spanobject;
+	window.onload=function(){
+			var divss=document.getElementById("button");
+			divss.onclick=buttonup;
+			var Slideswitch=document.getElementById("Slideswitch");
+			Slideswitch.onclick=onSlideswitch;
+
+			var production=document.getElementById("production");
+			production.onclick=onproduction;
+
+			}
+	function getHtml (argume){ //解析字符
+		var divs=document.getElementsByTagName("p")[0];
+
+			var charList=argume.split(/[^A-Z0-9a-z.?!,]/);
+			for (var i = 0;i<charList.length; i++) {
+				a="<span class='initspan'>"+charList[i]+"<span  class='spanbutton'></span>"+"</span>"+"&nbsp";
+				add(divs,a);
+			}
+		}
+
+		function add(a,b){  //追加字符串
+			var as=a.innerHTML;
+			  a.innerHTML=as+b;
+		}
+
+
+		function buttonup () {
+			var noshowtext=document.getElementById("noshowtext");
+			var intext=document.getElementById("text");
+			var production=document.getElementById("production");
+			var strings=intext.value;//取出textarea的值
+				getHtml(strings);
+				intext.style.display="none";		
+				noshowtext.style.display="block";
+				
+			//所有的span添加事件
+			var spans=document.getElementsByTagName("span");
+			for(var i=0;i<spans.length;i++){
+					spans[i].myArray=[];//创建一个数组对象装span的高亮词语
+					spans[i].index=i;//标记号码
+					spans[i].annotations='';//文字储存
+					spans[i].onclick=ishighlightsselect;
+			}	
+			this.style.display="none";
+			production.style.display="block";
+		}
+
+
+		function onSlideswitch(){
+			var noshowtext=document.getElementById("INSlideswitch");
+				var x=noshowtext.style.left;
+				x=x.replace("px","");
+				x=Number(x);
+				if(x<42){
+					var dss=setInterval(function(){
+					if(x==42){
+						clearInterval(dss);
+					}else{
+					//标记开关
+					highlight=true;
+					x=x+1;
+					noshowtext.style.left=x+'px';
+					noshowtext.style.background='#00B33B';
+					}},1);
+				}
+				
+				if(x==42){
+					var dsd=setInterval(function(){
+					if(x==2){
+						clearInterval(dsd);
+					}else{
+					//标记开关
+					highlight=false;
+					x=x-1;
+					noshowtext.style.left=x+'px';
+					noshowtext.style.background='gray';
+					}},1);
+				}
+		}
+
+				function biaoji (a) {
+			 			a.className="selectText";
+						var imgbutton=a.firstChild.nextSibling;
+						imgbutton.style.display="block";
+						//标记对象
+						spanobject=a.index;//标记点击的对象
+						//显解释框并且导入文字
+						var textarea2=document.getElementById("textarea2");
+						textarea2.style.display='block';
+
+						var spans=document.getElementsByTagName("span");
+
+						var test=spans[spanobject].annotations;
+						
+						textarea2.value=test;
+						
+						textarea2.onblur=function(){
+							var text1=this.value;
+							spans[spanobject].annotations=text1;
+						}
+
+						imgbutton.onclick=function(e){
+							 e = e || window.event;  
+							if(e.stopPropagation) { //W3C阻止冒泡方法  
+							     e.stopPropagation();  
+							 } else {  
+							    e.cancelBubble = true; //IE阻止冒泡方法  
+							 }
+							 //清除所有的高亮
+							 var textarea2=document.getElementById("textarea2");
+							 textarea2.value="";
+							var spans=document.getElementsByTagName("span");
+							var spanslength=spans[this.parentNode.index].myArray.length;
+							if (spanslength!=0) {
+								for (var i = 0; i<spanslength;i++){
+									var number=spans[this.parentNode.index].myArray[i];
+									spans[number].style.background="";
+								}
+							 }
+							spanobject=null;//清空现有对象
+
+							this.style.display="none";
+							var parent=this.parentNode;
+							parent.className="initspan";
+				}
+
+			}
+
+			function highlights(a){
+				a.className="initspanli"
+				var spans=document.getElementsByTagName("span");
+				var spanslength=spans[spanobject].myArray.length;
+				if(spanslength==0){
+				spans[spanobject].myArray[spanslength]=a.index;
+				}else{
+				spans[spanobject].myArray[spanslength]=a.index;
+				}
+			}
+
+			function ishighlightsselect(){
+				this
+				if(spanobject!=null&&highlight){
+					highlights(this);		
+				}else{
+					biaoji(this);
+				}
+			}
+
+
+			function onproduction(){
+				var textarea2=document.getElementById("textarea2");
+				var textarea3=document.getElementById("textarea3");
+				var textarea4=document.getElementById("textarea4");
+				var annotations=document.getElementById("annotations");
+				var content=document.getElementById("content");
+				var gaol=document.getElementById("gaol");
+				var noshowtext=document.getElementById("noshowtext");
+				var production=document.getElementById("production");
+				textarea3.style.display='block';
+				textarea2.style.display='none';
+				gaol.style.display='none';
+				noshowtext.style.display='none';
+				production.style.display="none";
+				textarea4.innerHTML=content.innerHTML;
+				annotations.style.display='none';
+			}
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+ body{color: #FFFFFF;margin:0px;}
+.section {text-align: center;}
+.section1{background: url("../img/section1.jpg") no-repeat center;background-size: cover; font: 20px "KaiTi";}
+.section2{background: url("../img/section10.jpg") no-repeat center;background-size: cover;position:relative;}
+.section3{background: url("../img/section2.jpg") no-repeat center;background-size: cover;}
+.section4{background: url("../img/section4.jpg") no-repeat center;background-size: cover;}
+.section5{background: url("../img/section3.jpg") no-repeat center;background-size: cover;}
+#headimg{background: url("../img/head.png") no-repeat center;background-size: cover; width: 150px;height:150px;border: 3px solid gray;border-radius:50%;margin:0px auto;margin-bottom: 40px ;transition:transform 0.5s,background 1s;top:-300px;position: relative;}
+#headimg:hover{transform:rotate(360deg); background: url("../img/head2.png") no-repeat center;background-size: cover;box-shadow:0 0 100px #5FAEFF;}
+#triangle{margin:0px auto;width:754px;height:200px;background:white;opacity:0.9;border-radius: 17px;position: relative;left:-1200px;}
+#picture1{background: url("../img/education.png") no-repeat center;transition:transform 0.5s}
+#picture1:hover{transform:rotate(360deg);box-shadow:0 0 100px #5FAEFF;border-color:#5FAEFF}
+#picture2{background: url("../img/age.png") no-repeat center;transition:transform 0.5s}
+#picture2:hover{transform:rotate(360deg);box-shadow:0 0 100px #5FAEFF;border-color:#5FAEFF}
+#picture3{background: url("../img/location.png") no-repeat center;transition:transform 0.5s}
+#picture3:hover{transform:rotate(360deg);box-shadow:0 0 100px #5FAEFF;border-color:#5FAEFF}
+#picture4{background: url("../img/status.png") no-repeat center;transition:transform 0.5s}
+#picture4:hover{transform:rotate(360deg);box-shadow:0 0 100px #5FAEFF;border-color:#5FAEFF}
+.fontcc{color: black;margin-top:10px;text-align: left;font: 23px "KaiTi";font-weight: bold;}
+.fontccr{color: black;margin-top:10px;text-align: right;font:23px "KaiTi";font-weight: bold;}
+.pipi{border-radius:50%;border:2px solid black;width: 90px;height:90px;float:left;margin:10px auto}
+.picturebox{height:200px;width:100px;float: left;margin-left: 70px;}
+.tilt{transform:rotate(-35deg);width:100px;border:1px solid black}
+#mydiv{ -webkit-perspective:800; -webkit-perspective-origin:50% 50%; overflow:hidden;}
+#pagegroup{ width:400px; height:501px; margin:0 auto; -webkit-transform-style:preserve-3d; position:relative;left:-1300px;}
+.pag{width:360px;height:561px;position:absolute;}
+#pag2{background: url("../img/H卡.png")no-repeat}
+#pag3{background: url("../img/css卡.png")no-repeat}
+#pag4{background: url("../img/js.png")no-repeat}
+#pag5{background: url("../img/jq卡.png")no-repeat}
+#pag6{background: url("../img/b卡.png")no-repeat} 
+#pag1{-webkit-transform-origin:left;-webkit-transition:-webkit-transform 1s ease;background: url("../img/kk卡.png")no-repeat}
+#pag2,#pag3,#pag4,#pag5,#pag6,#pag7{-webkit-transform-origin:left;-webkit-transition:-webkit-transform 1s ease;-webkit-transform: rotatey(90deg);}
+#page1child{background: url("../img/kkc.png")no-repeat;background-size: cover;width:235px;height:224px;margin-top:135px;margin-left:63px;transition:width 0.3s,height 0.3s,margin 0.3s;transform-origin:content;}
+#page1child:hover{margin-top:108px;margin-left:34px;width:282px;height:278px;}
+.page1child{margin-top:108px;margin-left:34px;width:282px;height:278px;}
+#header{position:fixed;width:100%;height:40px;background: #fff;top:0px;opacity: 0.7}
+#lasthr{animation:hr 3s infinite;}
+
+@keyframes hr{
+	0%{width:0px;}
+	50%{width:200px;}
+	100%{width:0px;}
+}

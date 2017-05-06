@@ -1,0 +1,194 @@
+*{
+	margin:0;
+	padding:0;
+}
+p{
+word-break:break-all;
+line-height: 30px;
+}
+p span{
+display: inline-block;
+}
+.spanbutton{
+	display: none;
+	}
+#head{
+	background:rgb(230,230,230);
+	height: 50px;
+	border-bottom: 1px solid rgb(184,184,184);
+}
+.textbox{
+padding-top: 35px;
+padding-left: 20px;
+width:86%;
+min-width: 640px;
+max-width: 1060px;
+height: 270px;
+border-bottom:1px solid rgb(184,184,184);
+overflow:auto;/*添加滑动条*/
+box-shadow: 0px 0px 0px 0px #ccc;
+line-height: 27px;
+}
+body div{
+	width:88%;
+	max-width: 1060px;
+	margin: 0px auto;
+}
+#submit{
+	width: 60px
+	height:40px;
+}
+.rectsubmit{
+width:60px;
+height:35px;
+background:rgb(241,241,241);
+border: 1px solid rgb(184,184,184);
+-webkit-border-radius: 4px;/*设置圆角边框*/
+text-align: center;/*设置横向剧中*/
+line-height:35px;  /*设置纵向剧中*/
+font-weight: bold;/*设置为粗体*/
+float: right;
+margin-right: 10px;
+margin-top: 7px;
+}
+.rectsubmit:hover{
+box-shadow:  1px 1px 5px rgb(184,184,184);
+cursor:pointer;
+
+}
+.selectText{
+	min-width:120px;
+	border-bottom: 1px solid rgb(184,184,184);
+	height: 30px;
+	vertical-align:bottom;/*把元素的顶端与行中最低的元素的顶端对齐+文字高度加上行高*/
+	display:inline-block;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	text-align:center;
+	line-height: 27px;
+	font-weight:bold;
+	color: #66CCFF;
+	margin-top: 10px;
+}
+.selectText:hover{
+cursor:pointer;
+}
+.float-left{
+	width: 27;
+	height: 27;
+	float: left;
+	margin-top:10px;
+	margin-left:20px;
+}
+#bar{
+	line-height: center;
+}
+#bar:hover{
+	cursor:pointer;
+}
+.numberVID:hover{
+	cursor:pointer;
+}
+.numberVID{
+	width: 30px;
+	height:30px;
+	background:#e4e4e4;
+	font-weight: bold;
+	border-radius:5px ;
+	color:#fff;
+	display:inline-block;
+	margin: 3px;
+	/*文字*/
+	text-align: center;
+	line-height: 30px;
+}
+#back:hover{
+cursor:pointer;
+}
+#fly:hover{
+cursor:pointer; 
+}
+#bardiv{
+	text-align: center;
+	box-shadow: 0px -6px  4px #BCBCBC;
+}
+.tdstyle{
+	width: 255px;
+	height:45px;
+	border:1px solid #BCBCBC;
+	text-align: center;
+	line-height: 45px;
+	font-weight: bold;
+	font-size: 20px;
+}
+.tdstyle:hover{
+cursor: pointer;
+color: #66CCFF;
+}
+table{border-collapse:collapse;
+	margin: 0px auto;
+}
+#tablediv{
+	width: 765px;
+	border:1px solid #BCBCBC;
+}
+#inputdata{
+	width: 95%;
+	height: 230px;
+}
+#makedata{
+width:60px;
+height:35px;
+background:rgb(241,241,241);
+border: 1px solid rgb(184,184,184);
+-webkit-border-radius: 4px;/*设置圆角边框*/
+text-align: center;/*设置横向剧中*/
+line-height:35px;  /*设置纵向剧中*/
+font-weight: bold;/*设置为粗体*/
+}
+#makedata:hover{
+box-shadow:  1px 1px 5px rgb(184,184,184);
+cursor:pointer;
+}
+#zhezhao{
+	position: absolute;
+	width: 100% !important;
+	max-width: 100%;
+	height: 100%;
+	background: grey;
+	opacity: 0.7;
+	z-index: 100;
+}
+#zhezhaocontent{
+	top: 18%;
+	width:420px;
+	height:325px;
+	background: #fff;
+	position:absolute;
+	z-index: 101;
+	left: 45.4%;
+	border-radius: 10px;
+}
+#zhenqubutton{
+margin-top:7px;
+height:35px;
+background:rgb(241,241,241);
+border: 1px solid rgb(184,184,184);
+-webkit-border-radius: 4px;/*设置圆角边框*/
+text-align: center;/*设置横向剧中*/
+line-height:35px;  /*设置纵向剧中*/
+font-weight: bold;/*设置为粗体*/
+}
+#zhenqubutton:hover{
+	cursor: pointer;
+}
+.strings{
+
+	vertical-align:bottom;/*把元素的顶端与行中最低的元素的顶端对齐+文字高度加上行高*/
+	text-align:center;
+	line-height: 27px;
+	font-weight:bold;
+	color: #fff;
+	background: #66CCFF;
+	margin-left: 5px;
+}

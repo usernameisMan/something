@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>asd</title>
+	<link href="css/all.css" rel=stylesheet type="text/css">
+	<meta charset="utf-8">
+</head>
+<body>
+<div id="zhezhao" style="display:none"><!--遮罩层--></div>
+<div id="zhezhaocontent" style="display:none">
+	<div style="border-bottom:1px solid #C3C2C2;height:50px;width:420px;text-align:center;line-height:50px;font-weight:bold;">
+		成绩报告
+	</div>
+	<div id="zhezhaocontentlv" style="height:220px;position:relative">
+		<div id="zhenqu" style="font-size:100px;text-align:center;color:#24CACA">0%</div>
+		<div style="font-size:70px;text-align:center">正确率</div>
+	</div>
+	<div style="border-top:1px solid #C3C2C2;height:50px;width:420px;">
+		<div id="zhenqubutton">查看卷轴</div>
+	</div>
+</div>
+	<div>
+		<div>
+			<div id="head"><!--顶部-->
+				<span class="float-left">
+					<img src="img/icon/back.png"  width="27" height="27" id="back" />
+				</span>
+				点击飞机按钮跳转到英文填空编辑页面 生成代码粘贴在这里
+				<span class="float-left" style="margin-left:40px">
+				<a href="文字解析.html">
+					<img src="img/icon/plane.png"  width="27" height="27" id="fly"/>
+					</a>
+				</span>		
+				<div id="rectsubmit" class="rectsubmit">提交</div>
+			</div>
+
+			<div id="textbox" class="textbox"><!--文字框--> 
+			<textarea id="inputdata"></textarea><!--导入题框-->
+				<p id="inner" style="display:none"><!--题的位置-->
+					<span class="selectText">1</span>
+				</p>
+			</div>
+		</div>
+
+		<div>
+			<div id="bardiv">
+				<img  id="bar" src="img/icon/bar.png" width="50" heigth="20" draggable="false">
+			</div>
+
+			<div id="number"  style="text-align: center;display:none;"><!--数字--></div>
+			<div id="makedata">生成题</div>
+			<div id="tablediv" style="display:none"><!--单词选择栏-->
+				<table id="tabledivtable">
+					
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/all.js"></script>
+</body>
+</html>
