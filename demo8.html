@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>照片墙</title>
+<style>
+body,ul{margin:0;padding:0;}
+body{background:url(img/demo3/bg.jpg);}
+ul{width:900px;position:absolute;left:240px;}
+li{list-style:none;float:left;margin:10px;padding:10px;border:2px solid white;border-radius:6px;}
+img{width:240px;height:220px;}
+</style>
+<script src="js/move.js"></script>
+<script>
+window.onload=function()
+{
+	var oUl=document.getElementById("pic");
+	var aLi=oUl.getElementsByTagName("li");
+	var oBtn=document.getElementById("btn");
+	var arr=[];
+	var arrPos=[]; //[[l,r],[l,r]]
+	var zIndex=1;
+	setPosition(aLi);
+	for(var i=0;i<aLi.length;i++)
+	{	
+		aLi[i].index=i;
+		arr.push(i);
+		drag(aLi[i]);	
+	}	//加事件
+	
+	oBtn.onclick=function()
+	{
+		arr.sort(function(a,b){
+			
+			return Math.random()-0.5;
+			
+			})
+		for(var i=0;i<aLi.length;i++)
+		{
+			startMove( aLi[i],{ left: arrPos[arr[i]][0] , top : arrPos[arr[i]][1] });
+			aLi[i].index=arr[i];
+		}
+	}
+	
+	function drag(obj)
+	{	
+		var disX=0;
+		var disY=0;
+		obj.onmousedown=function(ev)
+		{
+			var This=this;
+			var ev=ev||window.event;
+			This.style.zIndex=zIndex++;
+			disX=ev.clientX-obj.offsetLeft;
+			disY=ev.clientY-obj.offsetTop;
+			
+			try{
+				This.setCapture();
+				}catch(e)
+				{
+					
+				};
+			
+			document.onmousemove=function(ev)
+			{
+				
+				var ev=ev||window.event;
+				This.style.left=ev.clientX-disX-10+"px";
+				This.style.top=ev.clientY-disY-10+"px";
+
+				for(var i=0;i<aLi.length;i++)
+				{
+					aLi[i].style.border="2px solid white";	
+				}
+				
+				var oLi=findLi(This);
+				if(oLi)
+				{
+					oLi.style.border="2px solid red";
+				}
+				
+				
+			};
+			
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onmouseup=null;
+				
+				var oLi=findLi(This);
+				var temp=0;
+				try{
+				This.releaseCapture();	
+				}
+				catch(e){}; //ie事件捕获释放。
+
+				
+				if(oLi){
+					startMove( oLi , { left : arrPos[obj.index][0] , top : arrPos[obj.index][1] });
+					startMove( obj , { left : arrPos[oLi.index][0] , top : arrPos[oLi.index][1] });
+					oLi.style.border = '2px solid white';
+					temp = obj.index;
+					obj.index = oLi.index;
+					oLi.index = temp;
+				}
+				else{
+					startMove( obj , { left : arrPos[obj.index][0] , top : arrPos[obj.index][1] });
+				}
+				
+			}
+			return false;
+		}
+	};
+	
+	function setPosition(objs)
+	{
+		for(var i=0;i<objs.length;i++)
+		{
+			arrPos.push([objs[i].offsetLeft,objs[i].offsetTop]);				
+		}	
+		for(var i=0;i<objs.length;i++)
+		{
+			objs[i].style.position="absolute";
+			
+			objs[i].style.left=arrPos[i][0]+"px";
+			
+			objs[i].style.top=arrPos[i][1]+"px";		
+		}
+	} //初始化图片定位	
+	function pz(obj1,obj2){
+		var L1 = obj1.offsetLeft;
+		var R1 = obj1.offsetLeft + obj1.offsetWidth;
+		var T1 = obj1.offsetTop;
+		var B1 = obj1.offsetTop + obj1.offsetHeight;
+		
+		var L2 = obj2.offsetLeft;
+		var R2 = obj2.offsetLeft + obj2.offsetWidth;
+		var T2 = obj2.offsetTop;
+		var B2 = obj2.offsetTop + obj2.offsetHeight;
+		
+		if( R1<L2 || L1>R2 || B1<T2 || T1>B2 ){
+			return false;
+		}
+		else{
+			return true;
+		}
+	} //碰撞检测
+	function findLi(obj)
+	{	
+		var value=99999;
+		
+		var index=-1;
+		
+		for(var i=0;i<aLi.length;i++)
+		{
+			if(pz(obj,aLi[i])&&obj!=aLi[i])
+			{
+				var c=getDis(obj,aLi[i]);
+				
+				if(c<value)
+				{
+					value=c;
+					index=i;	
+				}
+			}	
+		}
+		if(index!=-1)
+		{
+			return aLi[index];	
+		}
+		else
+		{
+			return false;	
+		}
+	}  //获取最近的li	
+	function getDis(obj1,obj2)
+	{
+		var a=obj1.offsetLeft-obj2.offsetLeft;
+		
+		var b=obj1.offsetTop-obj2.offsetTop;
+		
+		return Math.sqrt(a*a+b*b);
+	}  //获取距离	 
+}
+
+</script>
+</head>
+<body>
+<input id="btn" type="button" value="随机排序" style="position:absolute;left:50px;top:50px;outline:none;background:#C9F;color:white;border-radius:6px;font:bold 14px/22px '微软雅黑';height:36px;width:80px;"/>
+<ul id="pic">
+	<li><img src="img/demo3/1.jpg"></li>
+	<li><img src="img/demo3/2.jpg"></li>
+	<li><img src="img/demo3/3.jpg"></li>
+	<li><img src="img/demo3/4.jpg"></li>
+	<li><img src="img/demo3/5.jpg"></li>
+	<li><img src="img/demo3/6.jpg"></li>
+	<li><img src="img/demo3/7.jpg"></li>
+	<li><img src="img/demo3/8.jpg"></li>
+	<li><img src="img/demo3/9.jpg"></li>
+</ul>
+</body>
+</html>
