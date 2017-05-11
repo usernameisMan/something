@@ -54,6 +54,9 @@ $(function(){
 
 });
 
+window.onload=function(){
+	setTimeout(scrollTo,0,0,0);
+}
 
     function next(){
       if(curIndex==6){return;}
